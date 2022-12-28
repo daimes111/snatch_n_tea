@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Snatch N' Tea
+
+> Snatch N' Tea is an interactive wig store, gossip column, and workout blog all in one form. Users are able to purchase wigs for regular use or in order to boost a post. Users can anonomoulsy post some
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
