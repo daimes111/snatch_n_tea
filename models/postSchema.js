@@ -4,9 +4,9 @@ const Schema = require("mongoose").Schema
 
 const postSchema = new Schema({
     username: {type: String, required: true},
-    text: {type: String, required: true},
+    post: {type: String, required: true},
     likes: {type: Number, default: 0 },
-    comments: {type: String, required: true},
+    comments: {type: String},
     url: {type: String},
     wigs: {type: String}
 }, {
