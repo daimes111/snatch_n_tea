@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import PostsList from "../../components/PostsList/PostsList"
+import PostsHeader from "../../components/PostsHeader/PostsHeader"
 import UserLogOut from "../../components/UserLogOut/UserLogOut"
+import styles from "./PostsPage.module.scss"
 
 export default function PostsPage({ user, setUser }) {
     const [posts, setPosts] = useState([])
@@ -17,7 +19,7 @@ export default function PostsPage({ user, setUser }) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({...newPost, username: user.name })
+                body: JSON.stringify({ ...newPost, username: user.name })
             })
             const createdPost = await response.json()
             const postsCopy = [createdPost, ...posts]
@@ -47,7 +49,7 @@ export default function PostsPage({ user, setUser }) {
         }
 
     }
-    
+
     const updatePost = async (id, updatedPost) => {
         try {
             const response = await fetch(`/api/posts/${id}`, {
@@ -55,7 +57,7 @@ export default function PostsPage({ user, setUser }) {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({...foundPost, post: updatedPost})
+                body: JSON.stringify({ ...foundPost, post: updatedPost })
             })
             const data = await response.json()
             setFoundPost(data)
@@ -80,17 +82,23 @@ export default function PostsPage({ user, setUser }) {
     }, [foundPost])
 
     return (
-        <>
-        <UserLogOut user={user} setUser={setUser} />
-        <PostsList 
-            posts={posts}
-            newPost= {newPost}
-            setNewPost={setNewPost}
-            createPost={createPost}
-            deletePost={deletePost}
-            updatePost={updatePost}
-            user={user}
-        />
-        </>
+        <div className={styles.PostsPage}>
+            {/* <UserLogOut user={user} setUser={setUser} /> */}
+            <div className={styles.PostsPageHeader}>
+                <h2>Home</h2>
+            </div>
+            <PostsHeader
+                newPost={newPost}
+                setNewPost={setNewPost}
+                createPost={createPost}
+                user={user}
+            />
+            <PostsList
+                posts={posts}
+                deletePost={deletePost}
+                updatePost={updatePost}
+                user={user}
+            />
+        </div>
     )
 }

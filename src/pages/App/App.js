@@ -3,6 +3,7 @@ import NavBar from "../../components/NavBar/NavBar"
 import AuthPage from "../AuthPage/AuthPage"
 import NewPostPage from "../NewPostPage/NewPostPage"
 import PostsPage from "../PostsPage/PostsPage"
+import styles from "./App.module.scss"
 import { Routes, Route } from "react-router-dom"
 import { getUser } from "../../utilities/users-service"
 
@@ -25,15 +26,15 @@ function App(){
       }, [])
 
     return (
-        <main className="App">
+        <main className={styles.App}>
             {
                 user ?
                 <>
-                    <NavBar />
+                    <NavBar user={user} setUser={setUser} />
                     <Routes>
                         {/* <Route path="/posts/new" element={<NewPostPage />} user={user}/> */}
                         <Route 
-                        path="/posts" 
+                        path="/" 
                         element={<PostsPage user={user} setUser={setUser}/>} 
                         />
                     </Routes>

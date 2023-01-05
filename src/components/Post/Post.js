@@ -1,13 +1,16 @@
 import { useState } from "react"
+import styles from "./Post.module.scss"
 
-export default function Post({ post, deletePost, updatePost }) {
+export default function Post({ post, deletePost, updatePost, user }) {
     const [showInput, setShowInput] = useState(false)
+    const [showButton, setShowButton] = useState(false)
 
     return (
-        <>
+        <li className={styles.Post}>
             <h3>{post.username}</h3>
             <p
                 onClick={(e) => {
+                    { }
                     setShowInput(!showInput)
                 }}>
                 {post.post}
@@ -23,7 +26,10 @@ export default function Post({ post, deletePost, updatePost }) {
                     }
                 }}
             />
-            <button onClick={(() => deletePost(post._id))}>Delete</button>
-        </>
+            {user.name === post.usermame ?
+                <button onClick={(() => deletePost(post._id))}>Delete</button>
+                : ""
+            }
+        </li>
     )
 }
