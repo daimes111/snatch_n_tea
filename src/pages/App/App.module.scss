@@ -1,6 +1,8 @@
-.App{
+.App {
     display: flex;
-    height: 100%;
-    // flex-direction: column;
-    // text-align: center;
+    height: 100vh;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
 }

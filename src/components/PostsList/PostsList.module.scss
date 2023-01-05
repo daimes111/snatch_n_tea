@@ -1,13 +1,11 @@
 .PostsList {
-    height: 100%;
 
 }
 
 .PostsList ul{
    display: flex;
    flex-direction: column;
-   margin-top: 15px;
-  margin-left: 10px;
+   margin: 10px;
   padding: 0;
   background-color: #f5f8fa;
   border-radius: 20px;
