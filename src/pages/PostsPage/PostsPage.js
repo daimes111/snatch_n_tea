@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import PostsList from '../../components/PostsList/PostsList'
 import PostsHeader from '../../components/PostsHeader/PostsHeader'
+import NavBar from '../../components/NavBar/NavBar'
 import UserLogOut from '../../components/UserLogOut/UserLogOut'
 import styles from './PostsPage.module.scss'
 
@@ -79,8 +80,10 @@ export default function PostsPage ({ user, setUser }) {
   }, [foundPost])
 
   return (
-    <div className={styles.PostsPage}>
-      {/* <UserLogOut user={user} setUser={setUser} /> */}
+    <main className={styles.PostsPage}>
+      {/* <aside className={styles.aside}>
+      <NavBar user={user} setUser={setUser} />
+      </aside> */}
       <div className={styles.PostsPageHeader}>
         <h2>Home</h2>
       </div>
@@ -96,6 +99,6 @@ export default function PostsPage ({ user, setUser }) {
         updatePost={updatePost}
         user={user}
       />
-    </div>
+    </main>
   )
 }

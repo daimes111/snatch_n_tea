@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import AuthPage from '../AuthPage/AuthPage'
-import NewPostPage from '../NewPostPage/NewPostPage'
+import WigsPage from "../WigsPage/WigsPage"
 import PostsPage from '../PostsPage/PostsPage'
 import styles from './App.module.scss'
 import { Routes, Route } from 'react-router-dom'
@@ -37,7 +37,9 @@ function App () {
                         path='/'
                         element={<PostsPage user={user} setUser={setUser} />}
                       />
+                      
                     </Routes>
+                    <WigsPage />
                   </>
                   : <AuthPage setUser={setUser} />
             }

@@ -14,6 +14,7 @@ export default function PostsList ({ posts, deletePost, updatePost, user }) {
             deletePost={deletePost}
             updatePost={updatePost}
             user={user}
+            
           />
         ))}
       </ul>

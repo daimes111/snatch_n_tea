@@ -4,13 +4,27 @@
   background-color: grey;
   // border: .3vmin solid black;
   border-radius: 2vmin;
-  margin-left: 175px;
+  margin-left: 30vw;
   flex: 0.4;
   border-right: 1px solid var;
-  min-width: 70vw;
+  min-width: 60vw;
   overflow-y: scroll;
+  // height: 100%;
+  // display: grid;
+  // grid-template-columns: 1.6fr 3.5fr 3fr;
+  // grid-template-rows: 1fr;
+  // background-color: var(--white);
+  // border-radius: 2vmin;
 }
 
 .PostsPage::-webkit-scrollbar {
   display: none;
 }
+
+// .PostsPage .aside {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin: 3vmin 2vmin;
+// }

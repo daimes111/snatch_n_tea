@@ -3,12 +3,13 @@
     float: left;
     height: 100%;
     // border: .3vmin solid black;
-    width: 120px;
+   
     // border-right: 1px solid var(--twitter-background);
     // flex: 0.3;
-    min-width: 250px; 
+    min-width: fit-content; 
     margin-top: 20px;
-
+    margin-left: -10px;
+    // background-color: black;
     padding-left: 20px;
     padding-right: 20px;
     text-align: center;
