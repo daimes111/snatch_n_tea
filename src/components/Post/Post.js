@@ -48,8 +48,10 @@ export default function Post({ post, deletePost, updatePost, user }) {
     }
 
     return (
+        
         <li className={styles.Post}>
-            <h3>{post.username}</h3>
+            { post.anon? <h3>XOXO Gossip Girl</h3> :
+            <h3>{post.username}</h3>}
             <p
                 onClick={(e) => {
                     setShowInput(!showInput)
@@ -82,5 +84,6 @@ export default function Post({ post, deletePost, updatePost, user }) {
                 : ""
             }
         </li>
+        
     )
 }

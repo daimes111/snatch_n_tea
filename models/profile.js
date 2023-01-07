@@ -7,6 +7,7 @@ const profileSchema = new Schema({
   interests: { type: String },
   username: { type: String, required: true }
   // add posts here
+  //wigs
 })
 
 const Profile = model('Profile', profileSchema)

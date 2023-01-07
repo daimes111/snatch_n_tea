@@ -10,10 +10,12 @@ export default function PostsPage ({ user, setUser }) {
   const [foundPost, setFoundPost] = useState(null)
   const [newPost, setNewPost] = useState({
     username: '',
-    post: ''
+    post: '', 
+    anon: false
   })
 
-  const createPost = async () => {
+  const createPost = async (evt) => {
+    evt.preventDefault()
     try {
       const response = await fetch('/api/posts', {
         method: 'POST',
@@ -27,7 +29,8 @@ export default function PostsPage ({ user, setUser }) {
       setFoundPost(postsCopy)
       setNewPost({
         username: '',
-        post: ''
+        post: '',
+        anon: false
       })
     } catch (err) {
       console.error(err)

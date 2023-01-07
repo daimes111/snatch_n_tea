@@ -7,6 +7,9 @@ export default function PostsListHeader ({ newPost, setNewPost, createPost, user
   // }
 
   const handleChange = (evt) => {
+    if (evt.target.type === "checkbox") {
+        evt.target.value = evt.target.checked
+    }
     setNewPost({ ...newPost, [evt.target.name]: evt.target.value })
   }
   return (
@@ -18,7 +21,10 @@ export default function PostsListHeader ({ newPost, setNewPost, createPost, user
           value={newPost.post}
           onChange={handleChange}
           placeholder="What's the Tea Sis'?"
-         />
+
+        />
+
+        <img ></img>
 
         {/* <input
           type="text"
@@ -27,6 +33,7 @@ export default function PostsListHeader ({ newPost, setNewPost, createPost, user
           onChange={handleChange}
           placeholder="Optional URL"
                   /> */}
+        For Gossip Girl?<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange}/>        
         <button onClick={createPost} type='submit'>Spill It</button>
       </form>
     </div>

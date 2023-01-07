@@ -26,7 +26,7 @@ export default function NavBar({ user, setUser }) {
             <NavBarOption Icon={MailOutlineIcon} text="Messages" />
             <NavBarOption Icon={BookmarkBorderIcon} text="Bookmarks" />
             <NavBarOption Icon={ListAltIcon} text="Lists" />
-            <NavBarOption Icon={PermIdentityIcon} text="Profile" />
+            <NavBarOption Icon={PermIdentityIcon} text={<Link to="/profile">Profile</Link>} />
             {/* <NavBarOption Icon={MoreHorizIcon} text="More" /> */}
             <UserLogOut user={user} setUser={setUser} />
             {/* | &nbsp; */}

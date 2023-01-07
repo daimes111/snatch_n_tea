@@ -29,7 +29,9 @@ async function create (req, res, next) {
 }
 async function index (req, res, next) {
   try {
-    const posts = await Post.find({})
+    const posts = await Post.find({}).populate({
+        path:"comments",
+    })
     console.log(posts)
     res.locals.data.posts = posts
     next()
@@ -58,7 +60,7 @@ async function update (req, res, next) {
 }
 async function show (req, res, next) {
   try {
-    const post = await Post.findById(req.params.id)
+    const post = await Post.findById(req.params.id).populate("comments")
     console.log(post)
     res.locals.data.post = post
     next()

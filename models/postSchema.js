@@ -6,9 +6,10 @@ const postSchema = new Schema({
   username: { type: String, required: true },
   post: { type: String, required: true },
   likes: { type: Number, default: 0 },
-  comments: { type: Schema.Types.ObjectId, ref: 'Comments' },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comments' }],
   video: { type: String },
-  wigs: { type: String }
+  wigs: { type: String },
+  anon: {type: Boolean, required: true}
 }, {
   timestamps: true
 })

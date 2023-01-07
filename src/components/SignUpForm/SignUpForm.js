@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { signUp } from '../../utilities/users-service'
 
+
 export default class SignUpForm extends Component {
   state = {
     name: '',
@@ -23,6 +24,7 @@ export default class SignUpForm extends Component {
       const user = await signUp(formData)
       // props.setUser came from Auth
       this.props.setUser(user)
+      
     } catch (error) {
       this.setState({ error: 'Sign Up Failed' })
     }

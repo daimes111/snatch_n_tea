@@ -1,0 +1,20 @@
+.ProfilePage {
+    //same as post page, can we keep in one spot?
+    height: 100vh;
+  
+    background-color: grey;
+    // border: .3vmin solid black;
+    border-radius: 2vmin;
+    margin-left: 30vw;
+    flex: 0.4;
+    border-right: 1px solid var;
+    min-width: 60vw;
+    overflow-y: scroll;
+    // height: 100%;
+    // display: grid;
+    // grid-template-columns: 1.6fr 3.5fr 3fr;
+    // grid-template-rows: 1fr;
+    // background-color: var(--white);
+    // border-radius: 2vmin;
+    
+  }

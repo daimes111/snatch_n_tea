@@ -1,4 +1,5 @@
 const Comment = require('../../models/comment')
+const Post = require("../../models/post")
 
 module.exports = {
   create,
@@ -20,6 +21,12 @@ function jsonComments (req, res) {
 async function create (req, res, next) {
   try {
     const comment = await Comment.create(req.body)
+    try{
+      const post = Post.findByIdAndUpdate(req.params.id, {$push: {comment: post._id}})
+      res.locals.data.post = post
+    } catch(err){
+      res.status(400).json({ msg: err.message })
+    }
     console.log(comment)
     res.locals.data.comment = comment
     next()
