@@ -11,30 +11,56 @@ module.exports = {
   jsonComments
 }
 
-function jsonComment (req, res) {
+function jsonComment(req, res) {
   res.json(res.locals.data.comment)
 }
-function jsonComments (req, res) {
+function jsonComments(req, res) {
   res.json(res.locals.data.comments)
 }
 
 async function create (req, res, next) {
   try {
     const comment = await Comment.create(req.body)
-    try{
-      const post = Post.findByIdAndUpdate(req.params.id, {$push: {comment: post._id}})
-      res.locals.data.post = post
-    } catch(err){
-      res.status(400).json({ msg: err.message })
-    }
     console.log(comment)
     res.locals.data.comment = comment
+    try{
+      const post = await Post.findByIdAndUpdate(req.params.postId, {$push: {comments: comment._id}})
+      res.locals.data.post = post
+      } catch(err){
+      res.status(400).json({ msg: err.message })
+    }
+
     next()
   } catch (err) {
     res.status(400).json({ msg: err.message })
   }
 }
-async function index (req, res, next) {
+
+// const create = {
+//   create(req, res, next) {
+//     Comment.create(req.body, (err, createdComment) => {
+//       if (err) {
+//         res.status(400).send({
+//           msg: err.message,
+//         })
+//       } else {
+//         Post.findByIdAndUpdate(req.params.postId, { $push: { comments: createdComment._id } }, (err, foundPost) => {
+//           if (err) {
+//             res.status(400).send({
+//               msg: err.message,
+//             })
+//           } else {
+//             res.locals.data.post = foundPost
+//             next()
+//           }
+//         })
+//       }
+
+//     })
+//   }
+// }
+
+async function index(req, res, next) {
   try {
     const comments = await Comment.find({})
     console.log(comments)
@@ -44,7 +70,7 @@ async function index (req, res, next) {
     res.status(400).json({ msg: err.message })
   }
 }
-async function destroy (req, res, next) {
+async function destroy(req, res, next) {
   try {
     const comment = await Comment.findByIdAndDelete(req.params.id)
     console.log(comment)
@@ -54,7 +80,7 @@ async function destroy (req, res, next) {
     res.status(400).json({ msg: err.message })
   }
 }
-async function update (req, res, next) {
+async function update(req, res, next) {
   try {
     const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true })
     console.log(comment)
@@ -65,9 +91,9 @@ async function update (req, res, next) {
   }
 }
 
-async function show (req, res, next) {
+async function show(req, res, next) {
   try {
-    const comment = await Comment.findById(req.params.id)
+    const comment = await Comment.findById(req.params.commentId)
     console.log(comment)
     res.locals.data.comment = comment
     next()

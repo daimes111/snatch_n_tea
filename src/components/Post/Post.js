@@ -46,12 +46,14 @@ export default function Post({ post, deletePost, updatePost, user }) {
             console.error(err)
         }
     }
+    
+
 
     return (
-        
+
         <li className={styles.Post}>
-            { post.anon? <h3>XOXO Gossip Girl</h3> :
-            <h3>{post.username}</h3>}
+            {post.anon ? <h3>XOXO Gossip Girl</h3> :
+                <h3>{post.username}</h3>}
             <p
                 onClick={(e) => {
                     setShowInput(!showInput)
@@ -70,20 +72,19 @@ export default function Post({ post, deletePost, updatePost, user }) {
                     }
                 }}
             />
-            <button onClick={(() => deletePost(post._id))}>Add Comment</button>
-            {/* <form>
-                <button onClick={() => setIsOpen(true)}>Open Comments</button>
+            {/* <button onClick={(() => deletePost(post._id))}>Add Comment</button> */}
 
+            <section>
                 <NewCommentPopUp open={isOpen} onClose={() => setIsOpen(false)}>
                     Comments
                 </NewCommentPopUp>
-            </form> */}
+            </section>
             <form style={{ display: "none" }}>hello</form>
             {user.name === post.username ?
                 <button style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
                 : ""
             }
         </li>
-        
+
     )
 }
