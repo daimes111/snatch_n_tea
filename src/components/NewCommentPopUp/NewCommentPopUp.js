@@ -1,11 +1,55 @@
-import React from "react"
-import ReactDom from "react-dom"
+import React, { Component } from 'react';
+import Modal from './NewCommentModal';
+import TriggerButton from '../TriggerButton';
 import styles from "./NewCommentPopUp.module.scss"
 
-export default function NewCommentPopUp({open}){
-    if (!open) return null
+export default class NewCommentPopUp extends Component {
+  state = { isShown: false };
+  showModal = () => {
+    this.setState({ isShown: true }, () => {
+      this.closeButton.focus();
+    });
+    this.toggleScrollLock();
+  };
+  closeModal = () => {
+    this.setState({ isShown: false });
+    this.TriggerButton.focus();
+    this.toggleScrollLock();
+  };
+  onKeyDown = (event) => {
+    if (event.keyCode === 27) {
+      this.closeModal();
+    }
+  };
+  onClickOutside = (event) => {
+    if (this.modal && this.modal.contains(event.target)) return;
+    this.closeModal();
+  };
 
-  return (
-    <h2>Hello!</h2>
-  )
+  toggleScrollLock = () => {
+    document.querySelector('html').classList.toggle('scroll-lock');
+  };
+  render() {
+    return (
+      <React.Fragment>
+        <TriggerButton
+          showModal={this.showModal}
+          buttonRef={(n) => (this.TriggerButton = n)}
+          triggerText={this.props.triggerText}
+          createComment={this.props.createComment}
+        />
+        {this.state.isShown ? (
+          <Modal
+            onSubmit={this.props.onSubmit}
+            modalRef={(n) => (this.modal = n)}
+            buttonRef={(n) => (this.closeButton = n)}
+            closeModal={this.closeModal}
+            onKeyDown={this.onKeyDown}
+            onClickOutside={this.onClickOutside}
+          />
+        ) : null}
+      </React.Fragment>
+    );
+  }
 }
+

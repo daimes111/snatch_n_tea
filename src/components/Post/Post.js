@@ -21,9 +21,20 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
     }
 
+    const getComments = async () => {
+        try {
+            const response = await fetch('/api/comments')
+            const data = await response.json()
+            setComments(data.reverse())
+          } catch (err) {
+            console.error(err)
+          }
+    }
+
     useEffect(() => {
         checkUser()
-    }, [])
+        getComments()
+    }, [foundComments])
 
 
     const createComment = async () => {
@@ -47,7 +58,12 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
     }
     
-
+    const triggerText = 'Add a comment'
+    const onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log(event.target.username.value);
+        console.log(event.target.text.value);
+      }
 
     return (
 
@@ -74,11 +90,14 @@ export default function Post({ post, deletePost, updatePost, user }) {
             />
             {/* <button onClick={(() => deletePost(post._id))}>Add Comment</button> */}
 
-            <section>
-                <NewCommentPopUp open={isOpen} onClose={() => setIsOpen(false)}>
-                    Comments
-                </NewCommentPopUp>
-            </section>
+            
+                <NewCommentPopUp 
+                triggerText={triggerText} 
+                onSubmit={onSubmit} 
+                user={user}
+                createComment={createComment}
+                />
+            
             <form style={{ display: "none" }}>hello</form>
             {user.name === post.username ?
                 <button style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
