@@ -20,7 +20,6 @@ function jsonPost (req, res) {
 async function create (req, res, next) {
   try {
     const post = await Post.create(req.body)
-    console.log(post)
     res.locals.data.post = post
     next()
   } catch (err) {
@@ -30,7 +29,6 @@ async function create (req, res, next) {
 async function index (req, res, next) {
   try {
     const posts = await Post.find({}).populate("comments")
-    console.log(posts)
     res.locals.data.posts = posts
     next()
   } catch (err) {
@@ -49,7 +47,6 @@ async function destroy (req, res, next) {
 async function update (req, res, next) {
   try {
     const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    console.log(post)
     res.locals.data.post = post
     next()
   } catch (err) {
@@ -59,7 +56,6 @@ async function update (req, res, next) {
 async function getPost (req, res, next) {
   try {
     const post = await Post.findById(req.params.postId).populate("comments")
-    console.log(post)
     res.locals.data.post = post
     next()
   } catch (err) {

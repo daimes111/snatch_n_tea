@@ -36,7 +36,7 @@ export default class NewCommentPopUp extends Component {
           showModal={this.showModal}
           buttonRef={(n) => (this.TriggerButton = n)}
           triggerText={this.props.triggerText}
-          createComment={this.props.createComment}
+          
         />
         {this.state.isShown ? (
           <Modal
@@ -46,6 +46,10 @@ export default class NewCommentPopUp extends Component {
             closeModal={this.closeModal}
             onKeyDown={this.onKeyDown}
             onClickOutside={this.onClickOutside}
+            user={this.props.user}
+            createComment={this.props.createComment}
+            newComment={this.props.newComment}
+            setNewComment={this.props.setNewComment}
           />
         ) : null}
       </React.Fragment>

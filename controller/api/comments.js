@@ -25,6 +25,7 @@ async function create (req, res, next) {
     res.locals.data.comment = comment
     try{
       const post = await Post.findByIdAndUpdate(req.params.postId, {$push: {comments: comment._id}})
+      console.log(post)
       res.locals.data.post = post
       } catch(err){
       res.status(400).json({ msg: err.message })
@@ -36,40 +37,26 @@ async function create (req, res, next) {
   }
 }
 
-// const create = {
-//   create(req, res, next) {
-//     Comment.create(req.body, (err, createdComment) => {
-//       if (err) {
-//         res.status(400).send({
-//           msg: err.message,
-//         })
-//       } else {
-//         Post.findByIdAndUpdate(req.params.postId, { $push: { comments: createdComment._id } }, (err, foundPost) => {
-//           if (err) {
-//             res.status(400).send({
-//               msg: err.message,
-//             })
-//           } else {
-//             res.locals.data.post = foundPost
-//             next()
-//           }
-//         })
-//       }
-
-//     })
-//   }
-// }
 
 async function index(req, res, next) {
   try {
     const comments = await Comment.find({})
     console.log(comments)
     res.locals.data.comments = comments
+    try{
+      const post = await Post.findById(req.params.postId)
+      // const post = await Post.find({post: req.post._id})
+      console.log(post)
+      res.locals.data.post = post
+      } catch(err){
+      res.status(400).json({ msg: err.message })
+    }
     next()
   } catch (err) {
     res.status(400).json({ msg: err.message })
   }
 }
+
 async function destroy(req, res, next) {
   try {
     const comment = await Comment.findByIdAndDelete(req.params.id)

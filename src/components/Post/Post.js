@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import styles from './Post.module.scss'
 import NewCommentPopUp from '../NewCommentPopUp/NewCommentPopUp'
+import CommentsList from '../CommentsList/CommentsList'
 
 export default function Post({ post, deletePost, updatePost, user }) {
     const [showInput, setShowInput] = useState(false)
@@ -26,9 +27,9 @@ export default function Post({ post, deletePost, updatePost, user }) {
             const response = await fetch('/api/comments')
             const data = await response.json()
             setComments(data.reverse())
-          } catch (err) {
+        } catch (err) {
             console.error(err)
-          }
+        }
     }
 
     useEffect(() => {
@@ -57,13 +58,13 @@ export default function Post({ post, deletePost, updatePost, user }) {
             console.error(err)
         }
     }
-    
+
     const triggerText = 'Add a comment'
     const onSubmit = (event) => {
-        event.preventDefault(event);
-        console.log(event.target.username.value);
-        console.log(event.target.text.value);
-      }
+        event.preventDefault();
+        console.log(event.target.username);
+        console.log(event.target.text);
+    }
 
     return (
 
@@ -87,22 +88,30 @@ export default function Post({ post, deletePost, updatePost, user }) {
                         setShowInput(!showInput)
                     }
                 }}
+                /* <button onClick={(() => deletePost(post._id))}>Aƒdd Comment</button> */
             />
-            {/* <button onClick={(() => deletePost(post._id))}>Add Comment</button> */}
 
-            
-                <NewCommentPopUp 
-                triggerText={triggerText} 
-                onSubmit={onSubmit} 
+
+            <NewCommentPopUp
+                triggerText={triggerText}
+                onSubmit={onSubmit}
                 user={user}
                 createComment={createComment}
-                />
-            
+                newComment={newComment}
+                setNewComment={setNewComment}
+            />
+
             <form style={{ display: "none" }}>hello</form>
             {user.name === post.username ?
                 <button style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
                 : ""
             }
+            <CommentsList
+                comments={comments}
+                // deleteComment={deleteComment}
+                // updateComment={updateComment}
+                user={user}
+            />
         </li>
 
     )
