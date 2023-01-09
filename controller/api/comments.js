@@ -41,9 +41,10 @@ async function create (req, res, next) {
 async function index(req, res, next) {
   try {
     const comments = await Comment.find({})
-    console.log(comments)
+    // console.log(comments)
     res.locals.data.comments = comments
     try{
+      console.log(req.body)
       const post = await Post.findById(req.params.postId)
       // const post = await Post.find({post: req.post._id})
       console.log(post)
@@ -71,6 +72,7 @@ async function update(req, res, next) {
   try {
     const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true })
     console.log(comment)
+    // could be {$set: req.body}, {new:true}
     res.locals.data.comment = comment
     next()
   } catch (err) {

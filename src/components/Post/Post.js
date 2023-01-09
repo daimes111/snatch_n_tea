@@ -110,6 +110,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
                 comments={comments}
                 // deleteComment={deleteComment}
                 // updateComment={updateComment}
+                post={post}
                 user={user}
             />
         </li>
