@@ -1,4 +1,6 @@
 import React from 'react';
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+
 const Trigger = ({ triggerText, buttonRef, showModal }) => {
   return (
     <button
@@ -6,7 +8,7 @@ const Trigger = ({ triggerText, buttonRef, showModal }) => {
       ref={buttonRef}
       onClick={showModal}
     >
-      {triggerText}
+      <ChatBubbleOutlineIcon />
     </button>
   );
 };

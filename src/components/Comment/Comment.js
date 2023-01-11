@@ -1,14 +1,17 @@
 import { useState, useEffect } from 'react'
 import styles from './Comment.module.scss'
 // import NewCommentPopUp from '../NewCommentPopUp/NewCommentPopUp'
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import RepeatIcon from "@mui/icons-material/Repeat";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import PublishIcon from "@mui/icons-material/Publish";
 
 
 export default function Comment({
     comment,
     deleteComment,
     updateComment,
-    user }) 
-    {
+    user }) {
     const [showInput, setShowInput] = useState(false)
     const [showButton, setShowButton] = useState(false)
 
@@ -74,7 +77,12 @@ export default function Comment({
                 : ""
             }
 
-
+            <div className={styles.CommentFooter}>
+                <ChatBubbleOutlineIcon fontSize="small" />
+                <RepeatIcon fontSize="small" />
+                <FavoriteBorderIcon fontSize="small" />
+                <PublishIcon fontSize="small" />
+            </div>
         </li>
 
     )

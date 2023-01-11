@@ -1,25 +1,30 @@
 .PostsHeader {
-    padding-bottom: 10px;
-  border-bottom: 8px solid var(--twitter-background);
+  padding-bottom: 10px;
+  border-bottom: 4px solid var(--snatch-background);
   padding-right: 10px;
 }
 
 .PostsHeader form {
-    display: flex;
-    flex-direction: column;
-  }
-//   .tweetBox__input {
-   
-//   }
-  
-  .PostsHeader input {
-    flex: 1;
-    margin-left: 20px;
-    font-size: 20px;
-    border: none;
-    padding: 20px;
-    display: flex;
-    overflow-wrap: break-word;
-  }
+  display: flex;
+  flex-direction: column;
+}
 
-  
+//   .tweetBox__input {
+
+//   }
+
+.PostsHeader .Comment {
+  margin-top: 3px;
+  flex: 1;
+  margin-left: 20px;
+  font-size: 20px;
+  border: none;
+  padding: 20px;
+  display: flex;
+  overflow-wrap: break-word;
+}
+
+.HeadersExtra {
+  display: flex;
+  justify-content:end;
+}

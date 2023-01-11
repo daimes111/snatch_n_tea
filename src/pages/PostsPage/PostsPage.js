@@ -11,6 +11,7 @@ export default function PostsPage ({ user, setUser }) {
   const [newPost, setNewPost] = useState({
     username: `${user.name}`,
     post: '', 
+    url: "",
     anon: false
   })
 
@@ -30,6 +31,7 @@ export default function PostsPage ({ user, setUser }) {
       setNewPost({
         username: `${user.name}`,
         post: '',
+        url: "",
         anon: false
       })
     } catch (err) {

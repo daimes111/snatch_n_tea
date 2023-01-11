@@ -1,9 +1,11 @@
 # Snatch N Tea
+![](images/AuthPage.png)
 
-### Heroku Live : [https://git.heroku.com/snatch-n-tea.git](https://git.heroku.com/snatch-n-tea.git)
-### GitHub Repo: [git@github.com:daimes111/snatch_n_tea.git](git@github.com:daimes111/snatch_n_tea.git)
+### Heroku Live : [https://snatch-n-tea.herokuapp.com/](https://git.heroku.com/snatch-n-tea.git)
+### GitHub Repo: [https://github.com/daimes111/snatch_n_tea.git](git@github.com:daimes111/snatch_n_tea.git)
 ### GitHub Live: [https://daimes111.github.io/snatch_n_tea/](https://daimes111.github.io/snatch_n_tea/)
 
+---
 # Getting Started with Snatch N' Tea
 
 Snatch N' Tea was initally thought to be an interactive wig store, gossip column, and workout blog all in one form. Users would be able to purchase wigs for regular use or in order to boost a post. I would like to implement the wig snatching, but did not get the chance. Users can anonomoulsy post their gossip as Gossip girl, can comment on each others post
@@ -51,7 +53,7 @@ Snatch N' Tea was initally thought to be an interactive wig store, gossip column
 ---
 ## Auth vs conditionals
 
-> Althoug there are erros with auth, with conditionals I was able to make it were if the post.username does not match the user.name, the delete button does not appear and they are unable to make any edits on the post. Currently if a user posts anonymously they are still able to delete or edit. I'd like to have it where if you post to Gossip Girl, you lose the capability to edit or delete. 
+> Although there are erros with auth, with conditionals I was able to make it were if the post.username does not match the user.name, the delete button does not appear and they are unable to make any edits on the post. Currently if a user posts anonymously they are still able to delete or edit. I'd like to have it where if you post to Gossip Girl, you lose the capability to edit or delete. 
 
 ```
   <input
@@ -75,10 +77,29 @@ Snatch N' Tea was initally thought to be an interactive wig store, gossip column
 ```
 
 ---
+## Current Issues
+> It shows that I have a token from the function getToken(), but when called in users-service, it comes through as null.
+![](images/Token%20Errors.png)
+
+> Still need to work on styling. Items overlap when screen gets smaller
+![](images/Styling%20Issues.png)
+
+>Changed how my add comment worked and it messed up my styling. This is what it looked like before
+![](images/StyledPost.png)
+
+## What do I want to add?
+>A feature where users send there post to gossip girl and lose all auth on that post
+
+---
 ## Technologies used
 - Node.js
 - React
 - JSX
 - Express
 - Mongo
-- JSON Webotken
+- JSON Webtoken
+
+---
+## Planning
+### [Trello](https://trello.com/b/GPk7urTA/snatch-n-tea)  
+### [ERD:](https://lucid.app/lucidchart/c801b2ba-08ed-41a5-9b21-843f06fb2ded/edit?page=0_0&invitationId=inv_ba1ec1d9-b96b-4b88-90dd-2cbf219227c3#) 

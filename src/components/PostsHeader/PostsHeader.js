@@ -1,14 +1,10 @@
 import styles from './PostsHeader.module.scss'
 
-export default function PostsListHeader ({ newPost, setNewPost, createPost, user }) {
-  // const handleSubmit = (evt) => {
-  //     evt.preventDefault()
-  //     createPost()
-  // }
+export default function PostsListHeader({ newPost, setNewPost, createPost, user }) {
 
   const handleChange = (evt) => {
     if (evt.target.type === "checkbox") {
-        evt.target.value = evt.target.checked
+      evt.target.value = evt.target.checked
     }
     setNewPost({ ...newPost, [evt.target.name]: evt.target.value })
   }
@@ -21,20 +17,22 @@ export default function PostsListHeader ({ newPost, setNewPost, createPost, user
           value={newPost.post}
           onChange={handleChange}
           placeholder="What's the Tea Sis'?"
-
+          className={styles.Comment}
         />
 
         <img ></img>
-
-        {/* <input
+        <div className={styles.HeadersExtra}>
+          <input
           type="text"
           name='url'
           value={newPost.url}
           onChange={handleChange}
           placeholder="Optional URL"
-                  /> */}
-        For Gossip Girl?<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange}/>        
-        <button onClick={createPost} type='submit'>Spill It</button>
+                  />
+          Send it to Gossip Girl<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange} />
+          </div>
+          <button onClick={createPost} type='submit'>Spill It</button>
+        
       </form>
     </div>
   )

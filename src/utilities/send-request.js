@@ -9,7 +9,7 @@ export default async function sendRequest (url, method = 'GET', payload = null) 
     options.body = JSON.stringify(payload)
   }
   const token = getToken()
-  console.log(token)
+  console.log("get token token: ",token)
   if (token) {
     // Ensure headers object exists
     options.headers = options.headers || {}

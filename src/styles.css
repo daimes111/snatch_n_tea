@@ -1,12 +1,12 @@
 /* CSS Custom Properties */
 :root {
     --white: #FFFFFF;
-    --tan-1: #FBF9F6;
-    --tan-2: #E7E2DD;
-    --tan-3: #E2D9D1;
-    --tan-4: #D3C1AE;
-    --orange: #F67F00;
-    --text-light: #968c84;
+    --pink-1: #f396c6;
+    --pink-2: #e086b5;
+    --pink-3: #f07cb8;
+    --pink-4: #ea52a0;
+    --orange: #3d2e37;
+    --text-black: #110e0c;
     --text-dark: #615954;
   }
   
@@ -21,9 +21,11 @@
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--tan-4);
+    background-color: var(--pink-1);
     padding: 2vmin;
     height: 100vh;
+    --snatch-color: #f13e79;
+  --snatch-background: #e6ecf0;
   }
   
   code {
@@ -65,23 +67,24 @@
     overflow-y: scroll;
   }
   
-  .section-heading {
+  /* not on auth page */
+  /* .section-heading {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--tan-1);
+    background-color: var(--pink-4);
     color: var(--text-dark);
     border: .1vmin solid var(--tan-3);
     border-radius: 1vmin;
     padding: .6vmin;
     text-align: center;
     font-size: 2vmin;
-  }
+  } */
   
   .form-container {
     padding: 3vmin;
-    background-color: var(--tan-1);
-    border: .1vmin solid var(--tan-3);
+    background-color: var(--pink-4);
+    border: .1vmin solid var(--pink-3);
     border-radius: 1vmin;
   }
   
@@ -94,7 +97,8 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
     gap: 1.25vmin;
-    color: var(--text-light);
+    color: var(--text-black);
+    
   }
   
   label {
@@ -106,7 +110,7 @@
   input {
     padding: 1vmin;
     font-size: 2vmin;
-    border: .1vmin solid var(--tan-3);
+    border: .1vmin solid var(--pink-3);
     border-radius: .5vmin;
     color: var(--text-dark);
     background-image: none !important; /* prevent lastpass */
@@ -118,9 +122,9 @@
   } */
   
   button, a.button {
-    /* background-color: var(--twitter-color) !important; */
+    background-color: var(--snatch-color) !important;
     border: none !important;
-    color: white !important;
+    color: rgb(212, 205, 205) !important;
     font-weight: 900 !important;
     text-transform: inherit !important;
     border-radius: 30px !important;
@@ -142,7 +146,7 @@
   
   button:disabled, form:invalid button[type="submit"] {
     cursor: not-allowed;
-    background-color: var(--tan-4);
+    background-color: var(--pink-4);
   }
   
   button[type="submit"] {
