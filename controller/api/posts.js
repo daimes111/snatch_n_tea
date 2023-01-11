@@ -20,6 +20,8 @@ function jsonPost (req, res) {
 async function create (req, res, next) {
   try {
     const post = await Post.create(req.body)
+    console.log(req.user)
+    
     res.locals.data.post = post
     next()
   } catch (err) {
@@ -28,6 +30,7 @@ async function create (req, res, next) {
 }
 async function index (req, res, next) {
   try {
+    
     const posts = await Post.find({}).populate("comments")
     res.locals.data.posts = posts
     next()

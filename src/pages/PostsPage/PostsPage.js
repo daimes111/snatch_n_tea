@@ -9,7 +9,7 @@ export default function PostsPage ({ user, setUser }) {
   const [posts, setPosts] = useState([])
   const [foundPost, setFoundPost] = useState(null)
   const [newPost, setNewPost] = useState({
-    username: '',
+    username: `${user.name}`,
     post: '', 
     anon: false
   })
@@ -28,7 +28,7 @@ export default function PostsPage ({ user, setUser }) {
       const postsCopy = [createdPost, ...posts]
       setFoundPost(postsCopy)
       setNewPost({
-        username: '',
+        username: `${user.name}`,
         post: '',
         anon: false
       })

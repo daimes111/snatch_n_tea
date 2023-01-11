@@ -50,6 +50,7 @@ export default class NewCommentPopUp extends Component {
             createComment={this.props.createComment}
             newComment={this.props.newComment}
             setNewComment={this.props.setNewComment}
+          
           />
         ) : null}
       </React.Fragment>

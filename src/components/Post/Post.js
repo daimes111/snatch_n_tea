@@ -7,7 +7,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
     const [showInput, setShowInput] = useState(false)
     const [showButton, setShowButton] = useState(false)
     const [comments, setComments] = useState([])
-    const [foundComments, setFoundComment] = useState(null)
+    const [foundComment, setFoundComment] = useState(null)
     const [newComment, setNewComment] = useState({
         username: '',
         text: ''
@@ -24,7 +24,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
 
     const getComments = async () => {
         try {
-            const response = await fetch('/api/comments')
+            const response = await fetch(`/api/comments/${post._id}`)
             const data = await response.json()
             setComments(data.reverse())
         } catch (err) {
@@ -35,12 +35,12 @@ export default function Post({ post, deletePost, updatePost, user }) {
     useEffect(() => {
         checkUser()
         getComments()
-    }, [foundComments])
+    }, [foundComment])
 
 
     const createComment = async () => {
         try {
-            const response = await fetch('/api/comments', {
+            const response = await fetch(`/api/comments/${post._id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,12 +58,45 @@ export default function Post({ post, deletePost, updatePost, user }) {
             console.error(err)
         }
     }
+    const deleteComment = async (id) => {
+        try {
+            const response = await fetch(`/api/comments/${post._id}/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const data = await response.json()
+            setFoundComment(data)
+            
+        } catch (err) {
+            console.error(err)
+        }
+    }
+    const updateComment = async (id, updatedComment) => {
+        try {
+            
+            const response = await fetch(`/api/comments/${post._id}/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({...foundComment, comment: updatedComment })
+            })
+            const data = await response.json()
+            console.log(data)
+            setFoundComment(data)
+            
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     const triggerText = 'Add a comment'
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log(event.target.username);
-        console.log(event.target.text);
+       
+        
     }
 
     return (
@@ -88,17 +121,16 @@ export default function Post({ post, deletePost, updatePost, user }) {
                         setShowInput(!showInput)
                     }
                 }}
-                /* <button onClick={(() => deletePost(post._id))}>Aƒdd Comment</button> */
             />
 
 
             <NewCommentPopUp
                 triggerText={triggerText}
-                onSubmit={onSubmit}
                 user={user}
                 createComment={createComment}
                 newComment={newComment}
                 setNewComment={setNewComment}
+                onSubmit={onSubmit}
             />
 
             <form style={{ display: "none" }}>hello</form>
@@ -108,10 +140,14 @@ export default function Post({ post, deletePost, updatePost, user }) {
             }
             <CommentsList
                 comments={comments}
-                // deleteComment={deleteComment}
-                // updateComment={updateComment}
+               
+                updateComment={updateComment}
                 post={post}
                 user={user}
+                checkUser={checkUser}
+                showButton={showButton}
+                setShowButton={setShowButton}
+                deleteComment={deleteComment}
             />
         </li>
 

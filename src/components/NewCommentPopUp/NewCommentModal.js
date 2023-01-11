@@ -14,7 +14,8 @@ export default function Modal({
     user,
     createComment,
     newComment, 
-    setNewComment
+    setNewComment,
+
 }) {
     return ReactDOM.createPortal(
         <FocusTrap>
@@ -49,6 +50,8 @@ export default function Modal({
                             createComment={createComment}
                             newComment={newComment}
                             setNewComment={setNewComment}
+                            closeModal={closeModal}
+                           
                         />
                     </div>
                 </div>

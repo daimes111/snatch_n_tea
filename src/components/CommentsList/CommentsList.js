@@ -1,7 +1,7 @@
 import Comment from '../Comment/Comment'
 import styles from './CommentsList.module.scss'
 
-export default function CommentsList ({ comments, user, post }) {
+export default function CommentsList ({ comments, user, post, deleteComment, updateComment }) {
   return (
     // <h2>Comments List Page</h2>
     <div className={styles.CommentsList}>
@@ -14,8 +14,8 @@ export default function CommentsList ({ comments, user, post }) {
         <Comment
           key={comment._id}
           comment={comment}
-          // deleteComment={deleteComment}
-          // updateComment={updateComment}
+          deleteComment={deleteComment}
+          updateComment={updateComment}
           user={user}
           
         />

@@ -11,11 +11,11 @@ const dataController = {
   async create (req, res, next) {
     try {
       const user = await User.create(req.body)
-      console.log(req.body)
       const token = createJWT(user)
       res.locals.data.user = user
       res.locals.data.token = token
       console.log(token)
+      
       next()
     } catch (err) {
       console.log('Error!')
@@ -31,6 +31,7 @@ const dataController = {
       if (!match) throw new Error()
       res.locals.data.user = user
       res.locals.data.token = createJWT(user)
+      // console.log(res.locals.data.token)
       next()
     } catch (err) {
       res.status(400).json('Bad Credentials')

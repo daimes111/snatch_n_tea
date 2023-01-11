@@ -1,72 +1,78 @@
 # Getting Started with Snatch N' Tea
 
-> Snatch N' Tea is an interactive wig store, gossip column, and workout blog all in one form. Users are able to purchase wigs for regular use or in order to boost a post. Users can anonomoulsy post some
+Snatch N' Tea was initally thought to be an interactive wig store, gossip column, and workout blog all in one form. Users would be able to purchase wigs for regular use or in order to boost a post. I would like to implement the wig snatching, but did not get the chance. Users can anonomoulsy post their gossip as Gossip girl, can comment on each others post
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
+## Where to Start on the front end???
 
-## Available Scripts
+> If a user is brand new, they will sign up and will first be prompted to the clients profile (in progress). Currently having trouble with the authorization. I currently am getting a token, but by users-service token is coming back as null event with a token on the page. 
 
-In the project directory, you can run:
+---
+## How to start the backend and the frontend?
+    ### `npm run server`
+    ### `npm run client`
 
-### `npm start`
+---
+## Once logged in
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> Once a user is logged in the home page will show the posts headers as well as the time line of post. Most recent posts on top with .reverse. Each of the posts have the capability to have a comment added to it and the comments will be listed the same as the post (most recent on top). But with the comments we only want the comments for a specific post, so we add that id. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Posts**
+```
+ const getPosts = async () => {
+    try {
+      const response = await fetch('/api/posts')
+      const data = await response.json()
+      setPosts(data.reverse())
+    } catch (err) {
+      console.error(err)
+    }
+  }
+```
+**Comments**
+```
+ const getComments = async () => {
+        try {
+            const response = await fetch(`/api/comments/${post._id}`)
+            const data = await response.json()
+            setComments(data.reverse())
+        } catch (err) {
+            console.error(err)
+        }
+    }
+```
 
-### `npm test`
+---
+## Auth vs conditionals
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> Althoug there are erros with auth, with conditionals I was able to make it were if the post.username does not match the user.name, the delete button does not appear and they are unable to make any edits on the post. Currently if a user posts anonymously they are still able to delete or edit. I'd like to have it where if you post to Gossip Girl, you lose the capability to edit or delete. 
 
-### `npm run build`
+```
+  <input
+                style={{ display: showInput && user.name === post.username ? 'block' : 'none' }}
+                type='text'
+                defaultValue={post.post}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        updatePost(post._id, post.post = e.target.value)
+                        setShowInput(!showInput)
+                    }
+                }}
+            />
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+ {user.name === post.username ?
+                <button style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
+                : ""
+            }
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+## Technologies used
+- Node.js
+- React
+- JSX
+- Express
+- Mongo
+- JSON Webotken

@@ -18,16 +18,16 @@ function jsonComments(req, res) {
   res.json(res.locals.data.comments)
 }
 
-async function create (req, res, next) {
+async function create(req, res, next) {
   try {
     const comment = await Comment.create(req.body)
-    console.log(comment)
+    
     res.locals.data.comment = comment
-    try{
-      const post = await Post.findByIdAndUpdate(req.params.postId, {$push: {comments: comment._id}})
-      console.log(post)
+    try {
+      const post = await Post.findByIdAndUpdate(req.params.postId, { $push: { comments: comment._id } })
+     
       res.locals.data.post = post
-      } catch(err){
+    } catch (err) {
       res.status(400).json({ msg: err.message })
     }
 
@@ -40,18 +40,12 @@ async function create (req, res, next) {
 
 async function index(req, res, next) {
   try {
-    const comments = await Comment.find({})
-    // console.log(comments)
-    res.locals.data.comments = comments
-    try{
-      console.log(req.body)
-      const post = await Post.findById(req.params.postId)
-      // const post = await Post.find({post: req.post._id})
-      console.log(post)
-      res.locals.data.post = post
-      } catch(err){
-      res.status(400).json({ msg: err.message })
-    }
+   
+    const post = await Post.findById(req.params.postId).populate("comments")
+    // const post = await Post.find({post: req.post._id})
+   
+    res.locals.data.comments = post.comments
+
     next()
   } catch (err) {
     res.status(400).json({ msg: err.message })
@@ -71,7 +65,7 @@ async function destroy(req, res, next) {
 async function update(req, res, next) {
   try {
     const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    console.log(comment)
+    
     // could be {$set: req.body}, {new:true}
     res.locals.data.comment = comment
     next()

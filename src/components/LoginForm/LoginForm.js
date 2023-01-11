@@ -18,7 +18,7 @@ export default function LoginForm ({ setUser }) {
     try {
       const user = await userService.login(credentials)
       setUser(user)
-      console.log(user)
+      
     } catch (error) {
       setError(error.message)
     }
