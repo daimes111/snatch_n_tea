@@ -1,3 +1,9 @@
+# Snatch N Tea
+
+### Heroku Live : [https://git.heroku.com/snatch-n-tea.git](https://git.heroku.com/snatch-n-tea.git)
+### GitHub Repo: [git@github.com:daimes111/snatch_n_tea.git](git@github.com:daimes111/snatch_n_tea.git)
+### GitHub Live: [https://daimes111.github.io/snatch_n_tea/](https://daimes111.github.io/snatch_n_tea/)
+
 # Getting Started with Snatch N' Tea
 
 Snatch N' Tea was initally thought to be an interactive wig store, gossip column, and workout blog all in one form. Users would be able to purchase wigs for regular use or in order to boost a post. I would like to implement the wig snatching, but did not get the chance. Users can anonomoulsy post their gossip as Gossip girl, can comment on each others post
