@@ -2,7 +2,7 @@
 ![](images/AuthPage.png)
 
 ### Heroku Live : [https://snatch-n-tea.herokuapp.com/](https://git.heroku.com/snatch-n-tea.git)
-### GitHub Repo: [https://github.com/daimes111/snatch_n_tea.git](git@github.com:daimes111/snatch_n_tea.git)
+### GitHub Repo: [https://github.com/daimes111/snatch_n_tea.git](https://github.com/daimes111/snatch_n_tea.git)
 ### GitHub Live: [https://daimes111.github.io/snatch_n_tea/](https://daimes111.github.io/snatch_n_tea/)
 
 ---
