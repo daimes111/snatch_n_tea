@@ -80,6 +80,20 @@ Snatch N' Tea was initally thought to be an interactive wig store, gossip column
 ## Current Issues
 > It shows that I have a token from the function getToken(), but when called in users-service, it comes through as null.
 ![](images/Token%20Errors.png)
+**Issue solved!**
+>My get requests for the comments and post needed to be called so that the token would go through with the request
+```
+import sendRequest from '../../utilities/send-request'
+
+const getPosts = async () => {
+    try {
+        const response = await sendRequest('/api/posts')
+        setPosts(response)
+    } catch (error) {
+        console.error(error)
+    }
+}
+```
 
 > Still need to work on styling. Items overlap when screen gets smaller
 ![](images/Styling%20Issues.png)
