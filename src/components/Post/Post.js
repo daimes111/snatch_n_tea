@@ -6,6 +6,7 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
+import sendRequest from '../../utilities/send-request';
 
 export default function Post({ post, deletePost, updatePost, user }) {
     const [showInput, setShowInput] = useState(false)
@@ -28,9 +29,8 @@ export default function Post({ post, deletePost, updatePost, user }) {
 
     const getComments = async () => {
         try {
-            const response = await fetch(`/api/comments/${post._id}`)
-            const data = await response.json()
-            setComments(data.reverse())
+            const response = await sendRequest(`/api/comments/${post._id}`)
+            setComments(response)
         } catch (err) {
             console.error(err)
         }

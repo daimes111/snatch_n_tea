@@ -4,6 +4,7 @@ import PostsHeader from '../../components/PostsHeader/PostsHeader'
 import NavBar from '../../components/NavBar/NavBar'
 import UserLogOut from '../../components/UserLogOut/UserLogOut'
 import styles from './PostsPage.module.scss'
+import sendRequest from '../../utilities/send-request'
 
 export default function PostsPage ({ user, setUser }) {
   const [posts, setPosts] = useState([])
@@ -70,15 +71,23 @@ export default function PostsPage ({ user, setUser }) {
     }
   }
 
+  // const getPosts = async () => {
+  //   try {
+  //     const response = await fetch('/api/posts')
+  //     const data = await response.json()
+  //     setPosts(data.reverse())
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
   const getPosts = async () => {
     try {
-      const response = await fetch('/api/posts')
-      const data = await response.json()
-      setPosts(data.reverse())
-    } catch (err) {
-      console.error(err)
+        const response = await sendRequest('/api/posts')
+        setPosts(response)
+    } catch (error) {
+        console.error(error)
     }
-  }
+}
 
   useEffect(() => {
     getPosts()
