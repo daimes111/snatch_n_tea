@@ -90,7 +90,7 @@ import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 ![](images/Icons.png)
 
 ---
-## Current Issues
+## Unsolved Problems
 > It shows that I have a token from the function getToken(), but when called in users-service, it comes through as null.
 ![](images/Token%20Errors.png)
 **Issue solved!**
@@ -111,11 +111,16 @@ const getPosts = async () => {
 > Still need to work on styling. Items overlap when screen gets smaller
 ![](images/Styling%20Issues.png)
 
->Changed how my add comment worked and it messed up my styling. This is what it looked like before
+> Changed how my add comment worked and it messed up my styling. This is what it looked like before
 ![](images/StyledPost.png)
 
-## What do I want to add?
->A feature where users send there post to gossip girl and lose all auth on that post
+## Project enhancements?
+> A feature where users send there post to gossip girl and lose all auth on that post
+> Likes and wigs. If a user has a certain amount of likes or wigs their post would be most favorites
+> Users can snatch wigs from another users
+> Update profile page
+> Individual user page
+> Search functionality 
 
 ---
 ## Technologies used
