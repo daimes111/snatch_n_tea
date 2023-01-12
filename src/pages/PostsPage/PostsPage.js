@@ -83,7 +83,7 @@ export default function PostsPage ({ user, setUser }) {
   const getPosts = async () => {
     try {
         const response = await sendRequest('/api/posts')
-        setPosts(response)
+        setPosts(response.reverse())
     } catch (error) {
         console.error(error)
     }

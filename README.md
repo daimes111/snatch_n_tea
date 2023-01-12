@@ -75,6 +75,19 @@ Snatch N' Tea was initally thought to be an interactive wig store, gossip column
                 : ""
             }
 ```
+---
+## Icon imports
+> These icons were used throughout the project in multiple areas
+```
+import HomeIcon from "@mui/icons-material/Home";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+```
+![](images/Icons.png)
 
 ---
 ## Current Issues
