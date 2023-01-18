@@ -27,10 +27,19 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
     }
 
+    // const getComments = async () => {
+    //     try {
+    //         const response = await sendRequest(`/api/comments/${post._id}`)
+    //         setComments(response)
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
     const getComments = async () => {
         try {
-            const response = await sendRequest(`/api/comments/${post._id}`)
-            setComments(response)
+            const response = await fetch(`/api/comments/${post._id}`)
+            const data = await response.json()
+            setComments(data.reverse())
         } catch (err) {
             console.error(err)
         }
@@ -85,10 +94,10 @@ export default function Post({ post, deletePost, updatePost, user }) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ ...foundComment, comment: updatedComment })
+                body: JSON.stringify({ ...foundComment, text: updatedComment })
             })
             const data = await response.json()
-            // console.log(data)
+            console.log(data)
             setFoundComment(data)
 
         } catch (err) {
@@ -99,8 +108,6 @@ export default function Post({ post, deletePost, updatePost, user }) {
     const triggerText = 'Add a comment'
     const onSubmit = (event) => {
         event.preventDefault();
-
-
     }
 
     return (
@@ -126,8 +133,8 @@ export default function Post({ post, deletePost, updatePost, user }) {
                         }
                     }}
                 />
-                {post.url? <img src={post.url} alt=""/>
-                : "" }
+                {post.url ? <img src={post.url} alt="" />
+                    : ""}
 
                 <div className={styles.Buttons}>
                     {/* <NewCommentPopUp
