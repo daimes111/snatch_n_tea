@@ -88,7 +88,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
                 body: JSON.stringify({ ...foundComment, comment: updatedComment })
             })
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
             setFoundComment(data)
 
         } catch (err) {

@@ -4,7 +4,7 @@ import PostsHeader from '../../components/PostsHeader/PostsHeader'
 import NavBar from '../../components/NavBar/NavBar'
 import UserLogOut from '../../components/UserLogOut/UserLogOut'
 import styles from './PostsPage.module.scss'
-import sendRequest from '../../utilities/send-request'
+import * as postsAPI from "../../utilities/posts-api"
 
 export default function PostsPage ({ user, setUser }) {
   const [posts, setPosts] = useState([])
@@ -40,6 +40,33 @@ export default function PostsPage ({ user, setUser }) {
     }
   }
 
+  // const deletePost = async (id) => {
+  //   try {
+  //     const response = await postsAPI(id)
+  //     setFoundPost(response)
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
+
+  // const updatePost = async (id, updatedPost) => {
+  //   try {
+  //     const response = await postsAPI(id) 
+  //     // {
+  //     //   method: 'PUT',
+  //     //   headers: {
+  //     //     'Content-Type': 'application/json'
+  //     //   },
+  //     //   body: JSON.stringify({ ...foundPost, post: updatedPost })
+  //     // })
+  //     // const data = await response.json()
+  //     setFoundPost(response)
+  //   } catch (err) {
+  //     console.error(err)
+  //   }
+  // }
+ 
+
   const deletePost = async (id) => {
     try {
       const response = await fetch(`/api/posts/${id}`, {
@@ -71,23 +98,24 @@ export default function PostsPage ({ user, setUser }) {
     }
   }
 
-  // const getPosts = async () => {
-  //   try {
-  //     const response = await fetch('/api/posts')
-  //     const data = await response.json()
-  //     setPosts(data.reverse())
-  //   } catch (err) {
-  //     console.error(err)
-  //   }
-  // }
+
   const getPosts = async () => {
     try {
-        const response = await sendRequest('/api/posts')
-        setPosts(response.reverse())
-    } catch (error) {
-        console.error(error)
+      const response = await fetch('/api/posts')
+      const data = await response.json()
+      setPosts(data.reverse())
+    } catch (err) {
+      console.error(err)
     }
-}
+  }
+//   const getPosts = async () => {
+//     try {
+//         const response = await postsAPI.getAll()
+//         setPosts(response.reverse())
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
   useEffect(() => {
     getPosts()
