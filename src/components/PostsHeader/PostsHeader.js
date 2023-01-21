@@ -31,7 +31,9 @@ export default function PostsListHeader({ newPost, setNewPost, createPost, user 
                   />
           Send it to Gossip Girl<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange} />
           </div>
-          <button onClick={createPost} type='submit'>Spill It</button>
+          <button onClick={(e) => {
+            createPost(e, newPost)
+          }} type='submit'>Spill It</button>
         
       </form>
     </div>

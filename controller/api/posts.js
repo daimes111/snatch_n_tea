@@ -25,7 +25,7 @@ async function create (req, res, next) {
     res.locals.data.post = post
     next()
   } catch (err) {
-    res.status(400).json({ msg: err.message })
+    res.status(400).json({ msg: err.message, body:{...req.body, test: true } })
   }
 }
 async function index (req, res, next) {

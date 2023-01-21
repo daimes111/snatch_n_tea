@@ -47,7 +47,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
 
     useEffect(() => {
         checkUser()
-        getComments()
+        // getComments()
     }, [foundComment])
 
 
