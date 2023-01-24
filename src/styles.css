@@ -22,6 +22,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--pink-1);
+    padding-top: 100%;
     padding: 2vmin;
     height: 100vh;
     --snatch-color: #f13e79;

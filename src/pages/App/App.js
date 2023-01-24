@@ -41,7 +41,7 @@ function App () {
                     <Route path="/profile" element={<ProfilePage user={user} setUser={setUser}/>} />
                     <Route path="/*" element={<Navigate to="/profile" />} />
                     </Routes>
-                    <WigsPage />
+                    {/* <WigsPage /> */}
                   </>
                   : <AuthPage setUser={setUser} />
             }
