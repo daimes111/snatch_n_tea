@@ -7,6 +7,7 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
 import sendRequest from '../../utilities/send-request';
+import * as commentsAPI from "../../utilities/comments-api"
 
 export default function Post({ post, deletePost, updatePost, user }) {
     const [showInput, setShowInput] = useState(false)
@@ -27,50 +28,63 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
     }
 
+    const getComments = async () => {
+        try {
+            const response = await sendRequest(`/api/comments/${post._id}`)
+            setComments(response)
+        } catch (err) {
+            console.error(err)
+        }
+    }
     // const getComments = async () => {
     //     try {
-    //         const response = await sendRequest(`/api/comments/${post._id}`)
-    //         setComments(response)
+    //         const response = await fetch(`/api/comments/${post._id}`)
+    //         const data = await response.json()
+    //         setComments(data.reverse())
     //     } catch (err) {
     //         console.error(err)
     //     }
     // }
-    const getComments = async () => {
+
+
+
+    // const createComment = async () => {
+    //     try {
+    //         const response = await fetch(`/api/comments/${post._id}`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ ...newComment, username: user.name })
+    //         })
+    //         const createdComment = await response.json()
+    //         const commentsCopy = [createdComment, ...comments]
+    //         setFoundComment(commentsCopy)
+    //         setNewComment({
+    //             username: '',
+    //             text: ''
+    //         })
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
+
+    const createComment = async ( postId, createdComment) => {
         try {
-            const response = await fetch(`/api/comments/${post._id}`)
-            const data = await response.json()
-            setComments(data.reverse())
-        } catch (err) {
-            console.error(err)
+          const response = await commentsAPI.create(postId, { ...createdComment, username: user.name})
+          
+          // const postsCopy = [response, ...posts]
+          setFoundComment(response)
+        } catch(err){
+          console.error({msg: err.message})
+        } finally {
+          setNewComment({
+            username: `${user.name}`,
+            text: ''
+          })
         }
-    }
+      }
 
-    useEffect(() => {
-        checkUser()
-        // getComments()
-    }, [foundComment])
-
-
-    const createComment = async () => {
-        try {
-            const response = await fetch(`/api/comments/${post._id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ...newComment, username: user.name })
-            })
-            const createdComment = await response.json()
-            const commentsCopy = [createdComment, ...comments]
-            setFoundComment(commentsCopy)
-            setNewComment({
-                username: '',
-                text: ''
-            })
-        } catch (err) {
-            console.error(err)
-        }
-    }
     const deleteComment = async (id) => {
         try {
             const response = await fetch(`/api/comments/${post._id}/${id}`, {
@@ -86,6 +100,16 @@ export default function Post({ post, deletePost, updatePost, user }) {
             console.error(err)
         }
     }
+
+    // const deleteComment = async (id, deletedComment) => {
+    //     try {
+    //       const response = await commentsAPI.deleteById(id, {text: deletedComment})
+    //       setFoundComment(response)
+    //     } catch (err) {
+    //       console.error(err)
+    //     }
+    //   }
+
     const updateComment = async (id, updatedComment) => {
         try {
 
@@ -105,10 +129,24 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
     }
 
-    const triggerText = 'Add a comment'
+    // const updateComment = async (id, updatedComment) => {
+    //     try {
+    //       const response = await postsAPI.updateById(id, {text: updatedComment}) 
+    //       setFoundComment(response)
+    //     } catch (err) {
+    //       console.error(err)
+    //     }
+    //   }
+
+    // const triggerText = 'Add a comment'
     const onSubmit = (event) => {
         event.preventDefault();
     }
+
+    useEffect(() => {
+        checkUser()
+        getComments()
+    }, [foundComment])
 
     return (
         <div>
@@ -147,7 +185,7 @@ export default function Post({ post, deletePost, updatePost, user }) {
                 /> */}
 
                     {user.name === post.username ?
-                        <button style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
+                        <button className={styles.DeleteButton} style={{ display: showButton ? 'block' : 'none' }} onClick={(() => deletePost(post._id))}>Delete</button>
                         : ""
                     }
                 </div>
@@ -163,13 +201,15 @@ export default function Post({ post, deletePost, updatePost, user }) {
                     deleteComment={deleteComment}
                 />
                 <div className={styles.PostFooter}>
+                    <ChatBubbleOutlineIcon fontSize="small"/>
                     <NewCommentPopUp
-                        triggerText={triggerText}
+                        // triggerText={triggerText}
                         user={user}
                         createComment={createComment}
                         newComment={newComment}
                         setNewComment={setNewComment}
                         onSubmit={onSubmit}
+                        fontSize="small"
                     />
                     <RepeatIcon fontSize="small" />
                     <FavoriteBorderIcon fontSize="small" />

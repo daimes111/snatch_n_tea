@@ -145,7 +145,7 @@ export default function PostsPage ({ user, setUser }) {
       <NavBar user={user} setUser={setUser} />
       </aside> */}
       <div className={styles.PostsPageHeader}>
-        <h2>Home</h2>
+        <h2>{user.name}'s Page</h2>
       </div>
       <PostsHeader
         newPost={newPost}

@@ -10,8 +10,7 @@ module.exports = (req, res, next) => {
     // Check if token is valid and not expired
     jwt.verify(token, process.env.SECRET, function (err, decoded) {
       req.user = err ? null : decoded.user
-      console.log(req.user)
-      console.log(decoded)
+    
       // Can remove this...
       // If your app doesn't care
       //1000milliseconds

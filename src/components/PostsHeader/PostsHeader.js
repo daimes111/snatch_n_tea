@@ -29,11 +29,15 @@ export default function PostsListHeader({ newPost, setNewPost, createPost, user 
           onChange={handleChange}
           placeholder="Optional URL"
                   />
-          Send it to Gossip Girl<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange} />
+          
           </div>
+          <div className={styles.PostsFooter}>
+          Send it to Gossip Girl<input type="checkbox" name="anon" value={newPost.anon} onChange={handleChange} />
           <button onClick={(e) => {
             createPost(e, newPost)
           }} type='submit'>Spill It</button>
+          </div>
+        
         
       </form>
     </div>

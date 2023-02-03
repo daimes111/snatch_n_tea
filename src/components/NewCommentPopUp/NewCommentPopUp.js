@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Modal from './NewCommentModal';
-import TriggerButton from '../TriggerButton';
+import TriggerButton from '../TriggerButton/TriggerButton';
 import styles from "./NewCommentPopUp.module.scss"
 
 export default class NewCommentPopUp extends Component {

@@ -21,7 +21,7 @@ function jsonComments(req, res) {
 async function create(req, res, next) {
   try {
     const comment = await Comment.create(req.body)
-    
+    console.log("backend: ", comment)
     res.locals.data.comment = comment
     try {
       const post = await Post.findByIdAndUpdate(req.params.postId, { $push: { comments: comment._id } })

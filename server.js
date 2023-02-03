@@ -23,7 +23,7 @@ app.use('/api/users', require('./routes/api/users'))
 
 const ensureLoggedIn = require('./config/ensureLoggedIn')
 app.use('/api/posts', ensureLoggedIn, require('./routes/api/posts'))
-app.use('/api/comments', require('./routes/api/comments'))
+app.use('/api/comments', ensureLoggedIn, require('./routes/api/comments'))
 
 app.get('/api/test', (req, res) => {
   res.json({ eureka: 'you have found it! ' })

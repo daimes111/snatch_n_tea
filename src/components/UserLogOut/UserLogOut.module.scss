@@ -1,8 +1,11 @@
 .UserLogOut {
    
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: right;
     bottom: 20px;
+    align-items: center;
+    justify-content: center;
     // text-align: center;
  }
 
@@ -30,3 +33,4 @@
     margin: 20px;
     display: none;
 }
+

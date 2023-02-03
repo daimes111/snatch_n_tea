@@ -95,8 +95,8 @@
   }
   
   form {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    /* display: grid;
+    grid-template-columns: 1fr 3fr; */
     gap: 1.25vmin;
     color: var(--text-black);
     

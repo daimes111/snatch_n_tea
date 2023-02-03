@@ -1,12 +1,12 @@
 import sendRequest from './send-request';
 
-const BASE_URL = '/api/comments/:postId';
+const BASE_URL = '/api/comments';
 
 export function getAll() {
   return sendRequest(BASE_URL);
 }
-export function create(payload) {
-  return sendRequest(BASE_URL, "POST", payload);
+export function create(postId, payload) {
+  return sendRequest(`${BASE_URL}/${postId}`, "POST", payload);
 }
 
 export function updateById(id, payload) {

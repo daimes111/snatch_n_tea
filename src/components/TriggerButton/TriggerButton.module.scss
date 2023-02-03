@@ -1,0 +1,21 @@
+.TriggerButton {
+    // display: none;
+    left: 0 !important;
+    // background-color: black !important;
+    position: absolute;
+    bottom: 3px;
+}
+
+span:hover {
+    transition: color 100ms ease-out;
+    cursor: pointer;
+    // display: none;
+
+    .TriggerButton {
+        display: contents;
+        left: 0 !important;
+        background-color: black !important;
+        position: absolute;
+        bottom: 3px;
+    }
+}
