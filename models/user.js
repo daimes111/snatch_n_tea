@@ -17,7 +17,12 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  }, 
+  isAdmin: {
+    type: Boolean,
+    default: false
+  }, 
+  posts: [{type: Schema.Types.ObjectId, ref:"Post"}]
 }, {
   timestamps: true,
   toJSON: {

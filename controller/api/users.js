@@ -7,6 +7,15 @@ const checkToken = (req, res) => {
   res.json(req.exp)
 }
 
+const checkAdmin = (req, res, next) => {
+  console.log(req.user)
+  if (req.user.isAdmin) {
+    next();
+  } else {
+    return res.status(401).json("You are not authorized!");
+  }
+}
+
 const dataController = {
   async create (req, res, next) {
     try {
@@ -36,17 +45,31 @@ const dataController = {
     } catch (err) {
       res.status(400).json('Bad Credentials')
     }
+  }, 
+
+  async getUsers(req,res,next){
+    try {
+      const users = await User.find({});
+      res.locals.data.users = users
+      next()
+    } catch (err) {
+      res.status(400).json({msg: err.message});
+    }
   }
 }
 
 const apiController = {
   auth (req, res) {
     res.json(res.locals.data.token)
+  },
+  users(req,res) {
+    res.json(res.locals.data.users)
   }
 }
 
 module.exports = {
   checkToken,
+  checkAdmin,
   dataController,
   apiController
 }

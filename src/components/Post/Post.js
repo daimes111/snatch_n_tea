@@ -36,45 +36,12 @@ export default function Post({ post, deletePost, updatePost, user }) {
             console.error(err)
         }
     }
-    // const getComments = async () => {
-    //     try {
-    //         const response = await fetch(`/api/comments/${post._id}`)
-    //         const data = await response.json()
-    //         setComments(data.reverse())
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
-
-
-
-    // const createComment = async () => {
-    //     try {
-    //         const response = await fetch(`/api/comments/${post._id}`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ ...newComment, username: user.name })
-    //         })
-    //         const createdComment = await response.json()
-    //         const commentsCopy = [createdComment, ...comments]
-    //         setFoundComment(commentsCopy)
-    //         setNewComment({
-    //             username: '',
-    //             text: ''
-    //         })
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
+    
 
     const createComment = async (  createdComment) => {
         console.log(createdComment)
         try {
           const response = await commentsAPI.create(post._id, { ...createdComment, username: user.name})
-          
-          // const postsCopy = [response, ...posts]
           setFoundComment(response)
         } catch(err){
           console.error({msg: err.message})
@@ -86,21 +53,6 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
       }
 
-    // const deleteComment = async (id) => {
-    //     try {
-    //         const response = await fetch(`/api/comments/${post._id}/${id}`, {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         })
-    //         const data = await response.json()
-    //         setFoundComment(data)
-
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
 
     const deleteComment = async (id) => {
         try {
@@ -111,25 +63,6 @@ export default function Post({ post, deletePost, updatePost, user }) {
           console.error(err)
         }
       }
-
-    // const updateComment = async (id, updatedComment) => {
-    //     try {
-
-    //         const response = await fetch(`/api/comments/${post._id}/${id}`, {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             body: JSON.stringify({ ...foundComment, text: updatedComment })
-    //         })
-    //         const data = await response.json()
-    //         console.log(data)
-    //         setFoundComment(data)
-
-    //     } catch (err) {
-    //         console.error(err)
-    //     }
-    // }
 
     const updateComment = async (id, updatedComment) => {
         try {
