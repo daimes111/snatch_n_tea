@@ -69,9 +69,10 @@ export default function Post({ post, deletePost, updatePost, user }) {
     //     }
     // }
 
-    const createComment = async ( postId, createdComment) => {
+    const createComment = async (  createdComment) => {
+        console.log(createdComment)
         try {
-          const response = await commentsAPI.create(postId, { ...createdComment, username: user.name})
+          const response = await commentsAPI.create(post._id, { ...createdComment, username: user.name})
           
           // const postsCopy = [response, ...posts]
           setFoundComment(response)
@@ -85,58 +86,59 @@ export default function Post({ post, deletePost, updatePost, user }) {
         }
       }
 
+    // const deleteComment = async (id) => {
+    //     try {
+    //         const response = await fetch(`/api/comments/${post._id}/${id}`, {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         })
+    //         const data = await response.json()
+    //         setFoundComment(data)
+
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+    // }
+
     const deleteComment = async (id) => {
         try {
-            const response = await fetch(`/api/comments/${post._id}/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            const data = await response.json()
-            setFoundComment(data)
+          const response = await commentsAPI.deleteById(post._id, id)
 
+          setFoundComment(response)
         } catch (err) {
-            console.error(err)
+          console.error(err)
         }
-    }
-
-    // const deleteComment = async (id, deletedComment) => {
-    //     try {
-    //       const response = await commentsAPI.deleteById(id, {text: deletedComment})
-    //       setFoundComment(response)
-    //     } catch (err) {
-    //       console.error(err)
-    //     }
-    //   }
-
-    const updateComment = async (id, updatedComment) => {
-        try {
-
-            const response = await fetch(`/api/comments/${post._id}/${id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ ...foundComment, text: updatedComment })
-            })
-            const data = await response.json()
-            console.log(data)
-            setFoundComment(data)
-
-        } catch (err) {
-            console.error(err)
-        }
-    }
+      }
 
     // const updateComment = async (id, updatedComment) => {
     //     try {
-    //       const response = await postsAPI.updateById(id, {text: updatedComment}) 
-    //       setFoundComment(response)
+
+    //         const response = await fetch(`/api/comments/${post._id}/${id}`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ ...foundComment, text: updatedComment })
+    //         })
+    //         const data = await response.json()
+    //         console.log(data)
+    //         setFoundComment(data)
+
     //     } catch (err) {
-    //       console.error(err)
+    //         console.error(err)
     //     }
-    //   }
+    // }
+
+    const updateComment = async (id, updatedComment) => {
+        try {
+          const response = await commentsAPI.updateById(post._id, id, {text: updatedComment}) 
+          setFoundComment(response)
+        } catch (err) {
+          console.error(err)
+        }
+      }
 
     // const triggerText = 'Add a comment'
     const onSubmit = (event) => {

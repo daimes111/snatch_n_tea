@@ -9,9 +9,9 @@ export function create(postId, payload) {
   return sendRequest(`${BASE_URL}/${postId}`, "POST", payload);
 }
 
-export function updateById(id, payload) {
-  return sendRequest(`${BASE_URL}/${id}`, "PUT", payload);
+export function updateById(postId, id, payload) {
+  return sendRequest(`${BASE_URL}/${postId}/${id}`, "PUT", payload);
 }
-export function deleteById(id) {
-  return sendRequest(`${BASE_URL}/${id}`);
+export function deleteById(postId, id) {
+  return sendRequest(`${BASE_URL}/${postId}/${id}`, "DELETE");
 }

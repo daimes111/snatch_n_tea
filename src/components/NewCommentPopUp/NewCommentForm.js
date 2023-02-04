@@ -14,7 +14,7 @@ export default function Form({
         setNewComment({ ...newComment, [evt.target.name]: evt.target.value })
     }
     const handleClick = () => {
-        createComment()
+        createComment(newComment)
         
     }
     return (
